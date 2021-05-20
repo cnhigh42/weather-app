@@ -9,7 +9,7 @@ function dateToday(date) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
 
   let months = [
@@ -24,7 +24,7 @@ function dateToday(date) {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
 
   let currentMonth = months[date.getMonth()];
@@ -77,6 +77,8 @@ function search(event) {
   axios.get(apiUrl).then(displayWeather);
 }
 function displayWeather(response) {
+  console.log(response);
+
   let cityName = document.querySelector("#city");
   cityName.innerHTML = response.data.name;
 
@@ -97,6 +99,9 @@ function displayWeather(response) {
 
   let tempFeelsLike = document.querySelector("#feels-like");
   tempFeelsLike.innerHTML = `${Math.round(response.data.main.feels_like)}°`;
+
+  let weatherCondition = document.querySelector("#weather-condition");
+  weatherCondition.innerHTML = response.data.weather[0].description;
 
   /*how do you convert the sunrise/sunset time?! 
     let sunrise= document.querySelector("#sunrise");

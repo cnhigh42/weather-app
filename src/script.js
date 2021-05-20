@@ -1,7 +1,7 @@
 //time and date
-let currentTime = new Date();
 
-function dateToday(date) {
+function dateToday(timestamp) {
+  let date = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -31,6 +31,14 @@ function dateToday(date) {
   let currentDay = days[date.getDay()];
   let currentDate = date.getDate();
 
+  /*let dayText = document.querySelector("#today-date-time");
+  dayText.innerHTML = `${currentDay}, ${currentMonth} ${currentDate} <br/>${hours}:${minutes}`;*/
+  return `${currentDay}, ${currentMonth} ${currentDate}`;
+}
+
+function timeToday(timestamp) {
+  let date = new Date(timestamp);
+
   let hours = date.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
@@ -39,12 +47,8 @@ function dateToday(date) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-
-  let dayText = document.querySelector("#today-date-time");
-  dayText.innerHTML = `${currentDay}, ${currentMonth} ${currentDate} <br/>${hours}:${minutes}`;
+  return `${hours}:${minutes}`;
 }
-dateToday(currentTime);
-
 //celsius button re do this
 function handleCelsius(event) {
   event.preventDefault();
@@ -102,6 +106,12 @@ function displayWeather(response) {
 
   let weatherCondition = document.querySelector("#weather-condition");
   weatherCondition.innerHTML = response.data.weather[0].description;
+
+  let dateElement = document.querySelector("#today-date");
+  dateElement.innerHTML = dateToday(response.data.dt * 1000);
+
+  let timeElement = document.querySelector("#time");
+  timeElement.innerHTML = timeToday(response.data.dt * 1000);
 }
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);

@@ -112,6 +112,13 @@ function displayWeather(response) {
 
   let timeElement = document.querySelector("#time");
   timeElement.innerHTML = timeToday(response.data.dt * 1000);
+
+  let todayIcon = document.querySelector("#today-icon");
+  todayIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  todayIcon.setAttribute("alt", response.data.weather[0].description);
 }
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
@@ -132,3 +139,4 @@ function getPosition(event) {
 
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getPosition);
+getCurrentTemp(chicago);

@@ -102,15 +102,6 @@ function displayWeather(response) {
 
   let weatherCondition = document.querySelector("#weather-condition");
   weatherCondition.innerHTML = response.data.weather[0].description;
-
-  /*how do you convert the sunrise/sunset time?! 
-    let sunrise= document.querySelector("#sunrise");
-    let date = new Date(sunrise*1000);
-    let sunriseHours = date.getHours();
-    let sunriseMinutes = "0" + date.getMinutes();
-    let sunriseFormattedDate = `${sunriseHours}:${sunriseMinutes.substr(-2)}`;
-  sunrise.innerHTML = sunriseFormattedDate;
- */
 }
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);

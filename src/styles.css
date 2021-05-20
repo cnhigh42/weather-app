@@ -32,7 +32,7 @@ h2 {
   margin-top: 25px;
 }
 
-li {
+li:first-letter {
   text-transform: capitalize;
 }
 

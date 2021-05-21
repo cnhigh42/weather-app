@@ -49,36 +49,41 @@ function timeToday(timestamp) {
   }
   return `${hours}:${minutes}`;
 }
+
 //celsius button re do this
 function handleCelsius(event) {
   event.preventDefault();
   let celsius = document.querySelector("#todays-temperature");
-  celsius.innerHTML = "18°";
+  celsius.innerHTML = `${Math.round(((fahrenheitTemperature - 32) * 5) / 9)}°`;
 }
 
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", handleCelsius);
+let celsiusButton = document.querySelector("#celsius-button");
+celsiusButton.addEventListener("click", handleCelsius);
 
 //fahrenheit button rework this
 function handleFahrenheit(event) {
   event.preventDefault();
   let fahrenheit = document.querySelector("#todays-temperature");
-  fahrenheit.innerHTML = `${Math.round(fahrenheit.innerText * 1.8 + 32)}°`;
+  fahrenheit.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
 }
 
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", handleFahrenheit);
+let fahrenheitButton = document.querySelector("#fahrenheit-button");
+fahrenheitButton.addEventListener("click", handleFahrenheit);
+
+let fahrenheitTemperature = null;
 
 //City change
 
 function displayWeather(response) {
   console.log(response);
 
+  fahrenheitTemperature = response.data.main.temp;
+
   let cityName = document.querySelector("#city");
   cityName.innerHTML = response.data.name;
 
   let todaysTemp = document.querySelector("#todays-temperature");
-  todaysTemp.innerHTML = `${Math.round(response.data.main.temp)}°`;
+  todaysTemp.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
 
   let todayHigh = document.querySelector("#today-high");
   todayHigh.innerHTML = `${Math.round(response.data.main.temp_max)}°`;
@@ -133,9 +138,8 @@ searchForm.addEventListener("submit", handleSubmit);
 function getCurrentTemp(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  let units = "imperial";
   let apiKey = "347112769ada94c7e605400ea44c8990";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayWeather);
 }
 
@@ -146,4 +150,5 @@ function getPosition(event) {
 
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getPosition);
+
 search("Chicago");

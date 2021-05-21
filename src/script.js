@@ -71,15 +71,6 @@ fahrenheitLink.addEventListener("click", handleFahrenheit);
 
 //City change
 
-function search(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#city-input");
-  let cityValue = cityInput.value;
-  let apiKey = "347112769ada94c7e605400ea44c8990";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apiKey}&units=imperial`;
-  console.log(cityValue);
-  axios.get(apiUrl).then(displayWeather);
-}
 function displayWeather(response) {
   console.log(response);
 
@@ -120,8 +111,24 @@ function displayWeather(response) {
   );
   todayIcon.setAttribute("alt", response.data.weather[0].description);
 }
+
+function search(city) {
+  let apiKey = "347112769ada94c7e605400ea44c8990";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+  console.log(city);
+  axios.get(apiUrl).then(displayWeather);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input");
+  search(cityInput.value);
+}
+
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+searchForm.addEventListener("submit", handleSubmit);
+
+//get current location
 
 function getCurrentTemp(position) {
   let latitude = position.coords.latitude;
@@ -139,4 +146,4 @@ function getPosition(event) {
 
 let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getPosition);
-getCurrentTemp(chicago);
+search("Chicago");

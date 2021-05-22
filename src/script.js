@@ -56,6 +56,7 @@ function handleCelsius(event) {
   let celsius = document.querySelector("#todays-temperature");
   celsius.innerHTML = `${Math.round(((fahrenheitTemperature - 32) * 5) / 9)}°`;
   celsiusButton.classList.add("active");
+  fahrenheitButton.classList.remove("active");
 }
 
 let celsiusButton = document.querySelector("#celsius-button");
@@ -66,6 +67,8 @@ function handleFahrenheit(event) {
   event.preventDefault();
   let fahrenheit = document.querySelector("#todays-temperature");
   fahrenheit.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
+  fahrenheitButton.classList.add("active");
+  celsiusButton.classList.remove("active");
 }
 
 let fahrenheitButton = document.querySelector("#fahrenheit-button");

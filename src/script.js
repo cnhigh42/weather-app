@@ -55,6 +55,7 @@ function handleCelsius(event) {
   event.preventDefault();
   let celsius = document.querySelector("#todays-temperature");
   celsius.innerHTML = `${Math.round(((fahrenheitTemperature - 32) * 5) / 9)}°`;
+  celsiusButton.classList.add("active");
 }
 
 let celsiusButton = document.querySelector("#celsius-button");
@@ -75,7 +76,7 @@ let fahrenheitTemperature = null;
 //City change
 
 function displayWeather(response) {
-  console.log(response);
+  //console.log(response);
 
   fahrenheitTemperature = response.data.main.temp;
 

@@ -8,6 +8,15 @@ a:hover {
   text-decoration: underline;
 }
 body {
+  background: linear-gradient(
+    to bottom,
+    rgb(94, 159, 249),
+    rgba(3, 75, 82, 0) 100%
+  );
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: #495057;
   font-weight: 500;
   font-size: 18px;
@@ -65,10 +74,15 @@ p.by-me {
   margin-right: 5px;
 }
 
+div.card {
+  background-color: #fffefa;
+}
+
 .container {
   max-width: 55%;
   margin-top: 40px;
 }
+
 .day,
 .degree-change,
 .stat-heading,

@@ -46,7 +46,7 @@ li:first-letter {
 }
 
 li.weather-condition {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 section.forecast {
@@ -72,10 +72,6 @@ p.by-me {
   text-align: left;
   margin-left: 0px;
   margin-right: 5px;
-}
-
-div.card {
-  background-color: #fffefa;
 }
 
 .container {

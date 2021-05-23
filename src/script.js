@@ -50,26 +50,39 @@ function timeToday(timestamp) {
   return `${hours}:${minutes}`;
 }
 
-//celsius button re do this
+//Unit conversion
+//to do:make the active classes switch
 function handleCelsius(event) {
   event.preventDefault();
   let celsius = document.querySelector("#todays-temperature");
   celsius.innerHTML = `${Math.round(((fahrenheitTemperature - 32) * 5) / 9)}°`;
-  celsiusButton.classList.add("active");
-  fahrenheitButton.classList.remove("active");
+  let fTemp = document.getElementsByClassName("f-temp-change");
+  if (fTemp.classList.contains("disabled") = true){
+   ftemp.classList.add("active").remove("disabled");
+  }
+  let cTemp = document.getElementsByClassName("c-temp-change");
+  if(cTemp.classList.contains("active")=true){
+    cTemp.classList.add("disabled").remove("active");
+  }
 }
 
 let celsiusButton = document.querySelector("#celsius-button");
 celsiusButton.addEventListener("click", handleCelsius);
 
-//fahrenheit button rework this
+//to do:make the active classes switch
 function handleFahrenheit(event) {
   event.preventDefault();
   let fahrenheit = document.querySelector("#todays-temperature");
   fahrenheit.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
 
-  fahrenheitButton.classList.add("active");
-  celsiusButton.classList.remove("active");
+  let fTemp = document.getElementsByClassName("f-temp-change");
+  if (fTemp.classList.contains("active") = true){
+   ftemp.classList.add("disabled").remove("active");
+  }
+  let cTemp = document.getElementsByClassName("c-temp-change");
+  if(cTemp.classList.contains("disabled")=true){
+    cTemp.classList.add("active").remove("disabled");
+  }
 }
 
 let fahrenheitButton = document.querySelector("#fahrenheit-button");

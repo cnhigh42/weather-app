@@ -77,7 +77,7 @@ function handleFahrenheit(event) {
 
   let fTemp = document.getElementsByClassName("f-temp-change");
   if (fTemp.classList.contains("active") = true){
-   ftemp.classList.add("disabled").remove("active");
+   fTemp.classList.add("disabled").remove("active");
   }
   let cTemp = document.getElementsByClassName("c-temp-change");
   if(cTemp.classList.contains("disabled")=true){

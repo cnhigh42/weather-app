@@ -51,7 +51,6 @@ function timeToday(timestamp) {
 }
 
 //Unit conversion
-//to do:make the active classes switch
 function handleCelsius(event) {
   event.preventDefault();
   let celsius = document.querySelector("#todays-temperature");
@@ -62,7 +61,6 @@ function handleCelsius(event) {
 let celsiusButton = document.querySelector("#celsius-button");
 celsiusButton.addEventListener("click", handleCelsius);
 
-//to do:make the active classes switch
 function handleFahrenheit(event) {
   event.preventDefault();
   let fahrenheit = document.querySelector("#todays-temperature");
@@ -79,7 +77,7 @@ let fahrenheitTemperature = null;
 //City change
 
 function displayWeather(response) {
-  //console.log(response);
+  console.log(response);
 
   fahrenheitTemperature = response.data.main.temp;
 

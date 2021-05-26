@@ -79,39 +79,30 @@ let fahrenheitTemperature = null;
 function displayWeather(response) {
   console.log(response);
 
+  let cityName = document.querySelector("#city");
+  let todaysTemp = document.querySelector("#todays-temperature");
+  let todayHigh = document.querySelector("#today-high");
+  let todayLow = document.querySelector("#today-low");
+  let wind = document.querySelector("#wind");
+  let humidity = document.querySelector("#humidity");
+  let tempFeelsLike = document.querySelector("#feels-like");
+  let weatherCondition = document.querySelector("#weather-condition");
+  let dateElement = document.querySelector("#today-date");
+  let timeElement = document.querySelector("#time");
+  let todayIcon = document.querySelector("#today-icon");
+
   fahrenheitTemperature = response.data.main.temp;
 
-  let cityName = document.querySelector("#city");
   cityName.innerHTML = response.data.name;
-
-  let todaysTemp = document.querySelector("#todays-temperature");
   todaysTemp.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
-
-  let todayHigh = document.querySelector("#today-high");
   todayHigh.innerHTML = `${Math.round(response.data.main.temp_max)}°`;
-
-  let todayLow = document.querySelector("#today-low");
   todayLow.innerHTML = `${Math.round(response.data.main.temp_min)}°`;
-
-  let wind = document.querySelector("#wind");
   wind.innerHTML = `${Math.round(response.data.wind.speed)} mph`;
-
-  let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `${Math.round(response.data.main.humidity)}%`;
-
-  let tempFeelsLike = document.querySelector("#feels-like");
   tempFeelsLike.innerHTML = `${Math.round(response.data.main.feels_like)}°`;
-
-  let weatherCondition = document.querySelector("#weather-condition");
   weatherCondition.innerHTML = response.data.weather[0].description;
-
-  let dateElement = document.querySelector("#today-date");
   dateElement.innerHTML = dateToday(response.data.dt * 1000);
-
-  let timeElement = document.querySelector("#time");
   timeElement.innerHTML = timeToday(response.data.dt * 1000);
-
-  let todayIcon = document.querySelector("#today-icon");
   todayIcon.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`

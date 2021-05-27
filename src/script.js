@@ -74,8 +74,39 @@ fahrenheitButton.addEventListener("click", handleFahrenheit);
 
 let fahrenheitTemperature = null;
 
-//City change
+//5 day forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#five-day-forecast");
 
+  //why is this div italic?
+  let forecastHTML = `<div class= "row">`;
+
+  let days = ["Wed", "Thu", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col-sm day-1">
+      <div class="col-sm day">
+      ${day}
+      </div>
+        <div class="col-sm weather-icon">
+          <i class="fas fa-cloud-sun"></i>	
+        </div>
+        <div class="col-sm">
+          <span class="weather-high">58°</span>  
+          <span class="weather-low">39°</span>
+        </div>
+    </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
+//City change
 function displayWeather(response) {
   console.log(response);
 
@@ -145,3 +176,4 @@ let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getPosition);
 
 search("Chicago");
+displayForecast();

@@ -75,31 +75,43 @@ fahrenheitButton.addEventListener("click", handleFahrenheit);
 let fahrenheitTemperature = null;
 
 //5 day forecast
+function formatForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#five-day-forecast");
+  let forecast = response.data.daily;
 
-  //why is this div italic?
-  let forecastHTML = `<div class= "row">`;
+  let forecastHTML = `<div class= "row">`; //why is this div italic?
 
-  let days = ["Wed", "Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
     <div class="col-sm day-1">
     <div class="col-sm day">
-      ${day}
+      ${formatForecastDay(forecastDay.dt)}
       </div>
         <div class="col-sm weather-icon">
-          <i class="fas fa-cloud-sun"></i>	
+         <img src = "http://openweathermap.org/img/wn/${
+           forecastDay.weather[0].icon
+         }@2x.png"
+         alt = ${forecastDay.weather[0].description}
+         width = "45"/>
           </div>
         <div class="col-sm">
-        <span class="weather-high">58°</span>  
-          <span class="weather-low">39°</span>
+        <span class="weather-high">${Math.round(forecastDay.temp.max)}°</span>  
+          <span class="weather-low">${Math.round(forecastDay.temp.min)}°</span>
         </div>
         </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -111,7 +123,7 @@ function displayForecast(response) {
 function getForecast(coordinates) {
   console.log(coordinates);
   let apiKey = "347112769ada94c7e605400ea44c8990";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
@@ -149,7 +161,7 @@ function displayWeather(response) {
   todayIcon.setAttribute("alt", response.data.weather[0].description);
 
   getForecast(response.data.coord);
-  //console.log(response.data);
+  console.log(response.data);
 }
 
 function search(city) {

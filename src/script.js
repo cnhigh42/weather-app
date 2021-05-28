@@ -75,7 +75,8 @@ fahrenheitButton.addEventListener("click", handleFahrenheit);
 let fahrenheitTemperature = null;
 
 //5 day forecast
-function displayForecast() {
+
+function displayForecast(response) {
   let forecastElement = document.querySelector("#five-day-forecast");
 
   //why is this div italic?
@@ -87,29 +88,36 @@ function displayForecast() {
       forecastHTML +
       `
     <div class="col-sm day-1">
-      <div class="col-sm day">
+    <div class="col-sm day">
       ${day}
       </div>
         <div class="col-sm weather-icon">
           <i class="fas fa-cloud-sun"></i>	
-        </div>
+          </div>
         <div class="col-sm">
-          <span class="weather-high">58°</span>  
+        <span class="weather-high">58°</span>  
           <span class="weather-low">39°</span>
         </div>
-    </div>
+        </div>
   `;
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
+  //console.log(forecastHTML);
+  console.log(response.data.daily);
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "347112769ada94c7e605400ea44c8990";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 //City change
 function displayWeather(response) {
-  console.log(response);
-
   let cityName = document.querySelector("#city");
   let todaysTemp = document.querySelector("#todays-temperature");
   let todayHigh = document.querySelector("#today-high");
@@ -139,6 +147,9 @@ function displayWeather(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   todayIcon.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
+  //console.log(response.data);
 }
 
 function search(city) {
@@ -176,4 +187,4 @@ let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getPosition);
 
 search("Chicago");
-displayForecast();
+//displayForecast();

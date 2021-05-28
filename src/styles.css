@@ -122,14 +122,14 @@ h1.temp-number {
 }
 .today-icon {
   font-size: 75px;
-  color: #ffc107;
+  color: #ec6e4c;
 }
 .today-temp {
   text-align: center;
   padding-left: 5px;
 }
 .weather-high {
-  color: #ffc107;
+  color: #ec6e4c;
 }
 
 .weather-icon {
@@ -145,5 +145,5 @@ h1.temp-number {
   color: white;
 }
 .card {
-  background-color: #c2deff;
+  background-color: rgba(197, 223, 253, 0.425);
 }

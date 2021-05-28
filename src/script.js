@@ -50,30 +50,6 @@ function timeToday(timestamp) {
   return `${hours}:${minutes}`;
 }
 
-//Unit conversion
-function handleCelsius(event) {
-  event.preventDefault();
-  let celsius = document.querySelector("#todays-temperature");
-  celsius.innerHTML = `${Math.round(((fahrenheitTemperature - 32) * 5) / 9)}°`;
-  fahrenheitButton.classList.remove("active");
-  celsiusButton.classList.add("active");
-}
-let celsiusButton = document.querySelector("#celsius-button");
-celsiusButton.addEventListener("click", handleCelsius);
-
-function handleFahrenheit(event) {
-  event.preventDefault();
-  let fahrenheit = document.querySelector("#todays-temperature");
-  fahrenheit.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
-  fahrenheitButton.classList.add("active");
-  celsiusButton.classList.remove("active");
-}
-
-let fahrenheitButton = document.querySelector("#fahrenheit-button");
-fahrenheitButton.addEventListener("click", handleFahrenheit);
-
-let fahrenheitTemperature = null;
-
 //5 day forecast
 function formatForecastDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -142,10 +118,10 @@ function displayWeather(response) {
   let timeElement = document.querySelector("#time");
   let todayIcon = document.querySelector("#today-icon");
 
-  fahrenheitTemperature = response.data.main.temp;
+  let temperature = response.data.main.temp;
 
   cityName.innerHTML = response.data.name;
-  todaysTemp.innerHTML = `${Math.round(fahrenheitTemperature)}°`;
+  todaysTemp.innerHTML = `${Math.round(temperature)}°F`;
   todayHigh.innerHTML = `${Math.round(response.data.main.temp_max)}°`;
   todayLow.innerHTML = `${Math.round(response.data.main.temp_min)}°`;
   wind.innerHTML = `${Math.round(response.data.wind.speed)} mph`;

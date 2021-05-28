@@ -10,7 +10,7 @@ a:hover {
 body {
   background: linear-gradient(
     to bottom,
-    rgb(110, 168, 250),
+    rgb(105, 166, 252),
     rgba(3, 75, 82, 0) 100%
   );
   height: 100%;
@@ -87,11 +87,7 @@ p.by-me {
   font-weight: 700;
 }
 
-.day-1,
-.day-2,
-.day-3,
-.day-4,
-.day-5 {
+.day-1 {
   text-align: center;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -146,5 +142,5 @@ h1.temp-number {
   color: white;
 }
 .card {
-  background-color: rgba(197, 223, 253, 0.425);
+  background-color: rgba(211, 229, 253, 0.466);
 }

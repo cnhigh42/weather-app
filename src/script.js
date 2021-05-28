@@ -40,14 +40,11 @@ function timeToday(timestamp) {
   let date = new Date(timestamp);
 
   let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
   let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-  return `${hours}:${minutes}`;
+  let amOrPm = hours >= 12 ? "pm" : "am";
+  hours = hours % 12 || 12;
+  let finalTime = `${hours}:${minutes} ${amOrPm}`;
+  return finalTime;
 }
 
 //5 day forecast

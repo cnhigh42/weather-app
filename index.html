@@ -1,100 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-			crossorigin="anonymous"
-		/>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
 
-		<link rel="stylesheet" href="src/styles.css" />
-		<title>How's the weather today?</title>
-		<script src = "https://kit.fontawesome.com/7429c1947f.js";
-			crossorigin = "anonymous";></script>
-		
-	</head>
+    <link rel="stylesheet" href="src/styles.css" />
+    <title>How's the weather today?</title>
+    <script
+      src="https://kit.fontawesome.com/7429c1947f.js"
+      ;
+      crossorigin="anonymous"
+      ;
+    ></script>
+  </head>
 
-	<body >
-		<div class="container">
-			<div class="card col-sm  shadow p-3 mb-2 rounded-3">
-				<div class="card-holder">
-			<section class="input">
-					<form class="city-search" id="search-form">
-				<div class="input-group mb-3 col">
-					<input
-						type="search"
-						class="form-control"
-						id="city-input"
-						placeholder="Search a city"
-						autofocus= "on"
-						autocomplete="off"
-					/>
-					<span class="input-group-text btn btn-primary" >
-						<button id="search-link"><i class="fas fa-search"></i></button>
-					</span>
-						<span class="input-group-text btn btn-light degree-change">
-						<button id="current-location"><i class="fas fa-map-marker-alt" id="location-icon"></i></button>
-					</span>
+  <body>
+    <div class="container">
+      <div class="card col-sm shadow p-3 mb-2 rounded-3">
+        <div class="card-holder">
+          <section class="input">
+            <form class="city-search" id="search-form">
+              <div class="input-group mb-3 col">
+                <input
+                  type="search"
+                  class="form-control"
+                  id="city-input"
+                  placeholder="Search a city"
+                  autofocus="on"
+                  autocomplete="off"
+                />
+                <span class="input-group-text btn btn-primary">
+                  <button id="search-link">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </span>
+                <span class="input-group-text btn btn-light degree-change">
+                  <button id="current-location">
+                    <i class="fas fa-map-marker-alt" id="location-icon"></i>
+                  </button>
+                </span>
+              </div>
+            </form>
+          </section>
 
-				</div>
-				</form>					
+          <section class="today-forecast">
+            <div class="row gy-3">
+              <div class="col-sm-4 today-temp">
+                <div>
+                  <h1>
+                    <img src="#" alt="" id="today-icon" />
+                  </h1>
+                </div>
+                <div>
+                  <h1 id="todays-temperature"></h1>
+                </div>
+              </div>
+              <div class="col-sm-4 parent-location-date">
+                <div class="location-date">
+                  <div class="stat-heading">
+                    <span id="today-date"> </span><br />
+                    <span id="time"></span>
+                  </div>
+                  <h2>
+                    <span class="city" id="city"></span><br />
+                    <span class="weather-high" id="today-high"></span>
+                    <span class="weather-low" id="today-low"></span>
+                  </h2>
+                </div>
+              </div>
+              <div class="col-sm-4 parent-stats">
+                <ul class="day-stats">
+                  <li>
+                    <span class="stat-heading">feels like</span>
+                    <span id="feels-like"></span>
+                  </li>
+                  <li class="weather-condition">
+                    <span class="stat-heading" id="weather-condition"></span>
+                  </li>
 
-			</section>
-		
-			<section class="today-forecast">
-				<div class="row gy-3">
-					<div class="col-sm-4 today-temp">
-						<div>
-							<h1>
-								<img src="#" alt="" id="today-icon">
-							</h1>
-						</div>
-						<div>
-							<h1 id="todays-temperature"></h1>
-
-						</div>
-					</div>
-					<div class="col-sm-4 parent-location-date">
-						<div class="location-date">
-						<div class="stat-heading">
-							<span id="today-date">
-							</span><br />
-							<span id="time"></span>
-						</div>
-						<h2>
-							<span class="city" id="city"></span><br />
-							<span class="weather-high" id="today-high"></span>
-							<span class="weather-low" id="today-low"></span>  
-						</h2>
-						
-						</div>
-					</div>
-				<div class="col-sm-4 parent-stats">
-					<ul class="day-stats">
-						<li><span class="stat-heading feels-like" >feels like</span> <span id="feels-like"></span></li>
-						<li class="weather-condition"><span class="stat-heading" id="weather-condition"></span></li>
-
-						<li><span class="stat-heading" >humidity</span> <span id="humidity"></span></li>
-						<li><span class="stat-heading">wind</span> <span id="wind">	</span></li>
-					</ul>
-				</div>
-				</div>
-				</section>
-				<section class="forecast">
-					<div class="five-day-forecast" id="five-day-forecast"></div>
-				</section>
-		
-			<div>
-				<p class="by-me"> <a href="https://github.com/cnhigh42/weather-app" target="_blank">Open-source code</a> by  <a href="https://www.linkedin.com/in/christine-hightower-279770a/" target="_blank">Christine Hightower</a>
-				</p>
-			</div>
-		</div>	
-		<script src="src/script.js"></script>
-	</body>
+                  <li>
+                    <span class="stat-heading">humidity</span>
+                    <span id="humidity"></span>
+                  </li>
+                  <li>
+                    <span class="stat-heading">wind</span>
+                    <span id="wind"> </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section class="forecast">
+            <div class="five-day-forecast" id="five-day-forecast"></div>
+          </section>
+        </div>
+      </div>
+      <div>
+        <p class="by-me">
+          <a href="https://github.com/cnhigh42/weather-app" target="_blank"
+            >Open-source code</a
+          >
+          by
+          <a
+            href="https://www.linkedin.com/in/christine-hightower-279770a/"
+            target="_blank"
+            >Christine Hightower</a
+          >
+        </p>
+      </div>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
 </html>

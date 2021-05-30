@@ -30,12 +30,10 @@ function dateToday(timestamp) {
   let currentMonth = months[date.getMonth()];
   let currentDay = days[date.getDay()];
   let currentDate = date.getDate();
-
-  /*let dayText = document.querySelector("#today-date-time");
-  dayText.innerHTML = `${currentDay}, ${currentMonth} ${currentDate} <br/>${hours}:${minutes}`;*/
   return `${currentDay}, ${currentMonth} ${currentDate}`;
 }
 
+//12 hour clock
 function timeToday(timestamp) {
   let date = new Date(timestamp);
 
@@ -44,6 +42,7 @@ function timeToday(timestamp) {
   let amOrPm = hours >= 12 ? "pm" : "am";
   hours = hours % 12 || 12;
   let finalTime = `${hours}:${minutes} ${amOrPm}`;
+
   return finalTime;
 }
 
@@ -60,7 +59,7 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#five-day-forecast");
   let forecast = response.data.daily;
 
-  let forecastHTML = `<div class= "row">`; //why is this div italic?
+  let forecastHTML = `<div class= "row">`;
 
   forecast.forEach(function (forecastDay, index) {
     if (index < 5) {
@@ -89,15 +88,11 @@ function displayForecast(response) {
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  //console.log(forecastHTML);
-  console.log(response.data.daily);
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "347112769ada94c7e605400ea44c8990";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -118,7 +113,7 @@ function displayWeather(response) {
   let temperature = response.data.main.temp;
 
   cityName.innerHTML = response.data.name;
-  todaysTemp.innerHTML = `${Math.round(temperature)}°F`;
+  todaysTemp.innerHTML = `${Math.round(temperature)}°<small>F</small>`;
   todayHigh.innerHTML = `${Math.round(response.data.main.temp_max)}°`;
   todayLow.innerHTML = `${Math.round(response.data.main.temp_min)}°`;
   wind.innerHTML = `${Math.round(response.data.wind.speed)} mph`;
@@ -134,13 +129,11 @@ function displayWeather(response) {
   todayIcon.setAttribute("alt", response.data.weather[0].description);
 
   getForecast(response.data.coord);
-  console.log(response.data);
 }
 
 function search(city) {
   let apiKey = "347112769ada94c7e605400ea44c8990";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-  //console.log(city);
   axios.get(apiUrl).then(displayWeather);
 }
 
@@ -153,8 +146,7 @@ function handleSubmit(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
-//get current location
-
+//get geolocation weather
 function getCurrentTemp(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -172,4 +164,3 @@ let currentLocationButton = document.querySelector("#current-location");
 currentLocationButton.addEventListener("click", getPosition);
 
 search("Chicago");
-//displayForecast();

@@ -4,7 +4,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #495057;
+  color: #ec6e4c;
   text-decoration: underline;
 }
 body {
@@ -56,7 +56,7 @@ ul {
 }
 p.by-me {
   text-align: center;
-  font-weight: 300;
+  font-weight: 400;
 }
 .city-search {
   max-width: 85%;

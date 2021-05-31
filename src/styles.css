@@ -133,11 +133,11 @@ h1.temp-number {
 }
 
 #search-link {
-  color: white;
+  color: #f9fafb;
 }
 #current-location {
   position: relative;
   max-width: 114px;
   display: inline;
-  color: white;
+  color: #f9fafb;
 }

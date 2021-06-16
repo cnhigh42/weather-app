@@ -41,6 +41,10 @@ function timeToday(timestamp) {
   let minutes = date.getMinutes();
   let amOrPm = hours >= 12 ? "pm" : "am";
   hours = hours % 12 || 12;
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let finalTime = `${hours}:${minutes} ${amOrPm}`;
 
   return finalTime;
